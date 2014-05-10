@@ -1,0 +1,4 @@
+Solution of the peer assessment assignment.
+Consists of 4 differents plots: Plot1, Plot2, Plot3, Plot4 in format .png along with the R code (files .R) used to generate them.
+The .R code are fairly similar: first part is to load the data under the proper format, then open a .png graphics device, then plot the graph and finally closing the graphics device.
+The idea was to make each .R file completely independent.
