@@ -8,9 +8,13 @@ exdata<-transform(exdata,RDate=as.Date(Date,"%d/%m/%Y"));exdata<-transform(exdat
 # only keep the 2 dates mentioned: 1st and 2nd of February 2007
 exdata<-subset(exdata,RDate=="2007-02-01" | RDate=="2007-02-02")
 
-# open the graphics device: plot2.png
-png("plot2.png")
-#plot histogram with the required display Date:Time in x-axis, Global_active_power in y-axis
-with(exdata,plot(RPOSIT,Global_active_power,ylab="Global Active Power (kilowatts)",xlab='',type='l'))
+# open the graphics device: plot3.png
+png("plot3.png")
+#plot with the required display - uses the max of the 3 sub_metering columns to set the y limits 
+with(exdata,plot(RPOSIT,Sub_metering_1,ylab="Energy sub metering",xlab='',type='l',ylim=c(0,max(sapply(c(7:9),function(.x) max(exdata[,.x]))))))
+with(exdata,lines(RPOSIT,Sub_metering_2,col='red'))
+with(exdata,lines(RPOSIT,Sub_metering_3,col='blue'))
+# add a legend
+legend("topright",lty=1,legend =colnames(exdata)[c(7:9)],col=c('black','blue','red'),bty='n')
 # close the graphics device
 dev.off()
